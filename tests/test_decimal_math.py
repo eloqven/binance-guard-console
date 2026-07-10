@@ -62,3 +62,4 @@ def test_format_decimal_avoids_scientific_notation_and_redundant_zeros() -> None
     assert format_decimal("12.340000") == "12.34"
     assert format_decimal("100") == "100"
     assert format_decimal("0.000") == "0"
+    assert format_decimal("-0.000") == "0"
