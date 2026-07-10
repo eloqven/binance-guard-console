@@ -1,0 +1,27 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Runtime data
+/data/*.sqlite
+/data/*.db
+/data/logs/
+/data/snapshots/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,10 @@
+# The only accepted runtime mode during the foundation phase.
+mode = "dry_run"
+
+# These gates are deliberately redundant. Later live features must require
+# explicit code support, configuration, and tests—not merely a changed string.
+allow_live_entry = false
+allow_live_oco = false
+pause_on_ambiguous_state = true
+require_confirmed_fill_before_oco = true
+require_current_exchange_filters = true
