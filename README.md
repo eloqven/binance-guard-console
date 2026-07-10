@@ -21,9 +21,17 @@ Scan → Signal → Confirm fill → Build exact OCO → Validate → Dry-run/pl
 9. API credentials must never be committed.
 10. Live-order capabilities require explicit, separate safety gates and tests.
 
-## Day 1 status
+## Current status
 
-The repository contains only foundation code and safety configuration. Nothing can connect to Binance or place an order.
+Day 2 adds deterministic `Decimal` helpers for future Binance prices and quantities:
+
+- safe conversion from strings, integers, and `Decimal` values;
+- explicit rejection of binary floats and non-finite numbers;
+- exact round-down and round-up operations for tick and step increments;
+- increment-alignment checks;
+- plain-decimal formatting without exponent notation or signed zero.
+
+The repository still contains no Binance client and cannot place any order.
 
 ## Local setup
 
@@ -32,5 +40,18 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e ".[dev]"
 pytest
+ruff check .
 python -m binance_guard_console
+```
+
+## Decimal arithmetic example
+
+```python
+from binance_guard_console.decimal_math import (
+    format_decimal,
+    round_down_to_increment,
+)
+
+price = round_down_to_increment("1.23456", "0.001")
+assert format_decimal(price) == "1.234"
 ```
