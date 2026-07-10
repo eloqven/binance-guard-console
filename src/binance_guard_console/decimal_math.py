@@ -81,9 +81,11 @@ def format_decimal(value: DecimalInput) -> str:
     """Format a finite decimal without exponent notation or redundant zeros."""
 
     decimal_value = to_decimal(value)
-    text = format(decimal_value, "f")
+    if decimal_value == 0:
+        return "0"
 
+    text = format(decimal_value, "f")
     if "." in text:
         text = text.rstrip("0").rstrip(".")
 
-    return text or "0"
+    return text
